@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strconv"
 
 	AOC "github.com/c-stoeckl/advent-of-code-2019/src"
 )
@@ -12,5 +13,10 @@ func main() {
 		log.Fatalln("Please provide the number of the day for which you want the solution")
 	}
 
-	AOC.Solve(1)
+	day, err := strconv.Atoi(os.Args[1])
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	AOC.Solve(day)
 }

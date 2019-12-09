@@ -5,8 +5,6 @@ import (
 	"log"
 	"math"
 	"strconv"
-
-	lib "github.com/c-stoeckl/advent-of-code-2019/lib/parseinput"
 )
 
 func calcFuel(mass int) int {
@@ -15,7 +13,7 @@ func calcFuel(mass int) int {
 }
 
 func part1() {
-	lines, err := lib.ParseInput(1)
+	lines, err := parseInput(1)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
 	}

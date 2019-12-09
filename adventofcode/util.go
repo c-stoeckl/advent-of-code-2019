@@ -8,8 +8,8 @@ import (
 
 // ParseInput reads a whole file into memory
 // and returns a slice of its lines.
-func ParseInput(day int) ([]string, error) {
-	file, err := os.Open("src/inputs/" + strconv.Itoa(day) + ".txt")
+func parseInput(day int) ([]string, error) {
+	file, err := os.Open("adventofcode/inputs/" + strconv.Itoa(day) + ".txt")
 	if err != nil {
 		return nil, err
 	}

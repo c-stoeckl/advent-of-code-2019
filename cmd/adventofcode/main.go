@@ -5,7 +5,7 @@ import (
 	"os"
 	"strconv"
 
-	AOC "github.com/c-stoeckl/advent-of-code-2019/src"
+	AOC "github.com/c-stoeckl/advent-of-code-2019/adventofcode"
 )
 
 func main() {

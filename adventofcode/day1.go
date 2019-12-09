@@ -1,42 +1,57 @@
 package adventofcode
 
 import (
-	"fmt"
 	"log"
 	"math"
 	"strconv"
 )
+
+var input = parseInput(1)
+var fuelReqs []int
 
 func calcFuel(mass int) int {
 	fuel := math.Floor(float64(mass/3)) - 2
 	return int(fuel)
 }
 
-func part1() {
-	lines, err := parseInput(1)
-	if err != nil {
-		log.Fatalf("readLines: %s", err)
+func totalFuelReqs() int {
+	totalFuelReq := 0
+
+	for _, fuelReq := range fuelReqs {
+		totalFuelReq += fuelReq
 	}
 
-	var fuelReqs []int
-	for _, line := range lines {
-		mass, err := strconv.Atoi(line)
+	return totalFuelReq
+}
+
+func day1() {
+	for _, mass := range input {
+		mass, err := strconv.Atoi(mass)
 		if err != nil {
 			log.Fatal(err)
 		}
 
-		fuel := calcFuel(mass)
-		fuelReqs = append(fuelReqs, fuel)
+		fuelReq := calcFuel(mass)
+		fuelReqs = append(fuelReqs, fuelReq)
 	}
 
-	totalFuelReq := 0
-	for _, value := range fuelReqs {
-		totalFuelReq += value
-	}
-
-	fmt.Print(totalFuelReq)
+	printSolution(part1(), part2())
 }
 
-func part2() {
+func part1() int {
+	return totalFuelReqs()
+}
 
+func part2() int {
+	for i, fuelReq := range fuelReqs {
+		totalModuleFuelReqs := 0
+
+		for ; calcFuel(fuelReq) >= 0; fuelReq = calcFuel(fuelReq) {
+			totalModuleFuelReqs += fuelReq
+		}
+
+		fuelReqs[i] = totalModuleFuelReqs + fuelReq
+	}
+
+	return totalFuelReqs()
 }

@@ -14,7 +14,7 @@ func calcFuel(mass int) int {
 	return int(fuel)
 }
 
-func day1() {
+func part1() {
 	lines, err := lib.ParseInput(1)
 	if err != nil {
 		log.Fatalf("readLines: %s", err)
@@ -37,4 +37,8 @@ func day1() {
 	}
 
 	fmt.Print(totalFuelReq)
+}
+
+func part2() {
+
 }

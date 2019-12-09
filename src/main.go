@@ -6,7 +6,7 @@ import "fmt"
 func Solve(day int) {
 	switch day {
 	case 1:
-		day1()
+		part1()
 	default:
 		fmt.Println("No solution for the provided day, yet.")
 	}

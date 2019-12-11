@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-var input = parseInput(1)
+var masses = parseInput(1)
 var fuelReqs []int
 
 func calcFuel(mass int) int {
@@ -25,7 +25,7 @@ func totalFuelReqs() int {
 }
 
 func day1() {
-	for _, mass := range input {
+	for _, mass := range masses {
 		mass, err := strconv.Atoi(mass)
 		if err != nil {
 			log.Fatal(err)

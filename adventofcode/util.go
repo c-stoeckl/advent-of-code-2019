@@ -34,3 +34,17 @@ func printSolution(solutions ...interface{}) {
 		fmt.Printf("Part %d: %v\n", i+1, solution)
 	}
 }
+
+func stringArrayToInt(a1 []string) []int {
+	var a2 = []int{}
+
+	for _, s := range a1 {
+		i, err := strconv.Atoi(s)
+		if err != nil {
+			panic(err)
+		}
+		a2 = append(a2, i)
+	}
+
+	return a2
+}

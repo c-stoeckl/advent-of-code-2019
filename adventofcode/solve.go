@@ -9,6 +9,8 @@ func Solve(day int) {
 	switch day {
 	case 1:
 		day1()
+	case 2:
+		day2()
 	default:
 		fmt.Println("No solution for the provided day, yet.")
 	}

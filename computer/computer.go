@@ -27,7 +27,7 @@ func (c *computer) Load(program Program) {
 
 func (c *computer) Execute() []int {
 	for {
-		c.checkIfIndexOutOfBounds(c.index)
+		c.isIndexOutOfBounds(c.index)
 		opcode := OpCode(c.memory[c.index])
 
 		if c.index >= len(c.memory) || opcode == 99 {
@@ -68,18 +68,18 @@ func (c *computer) nextBlock() Instruction {
 		outputPos: c.memory[c.index+3],
 	}
 
-	c.checkIfInstructionFaulty(instruction)
+	c.isInstructionFaulty(instruction)
 	return instruction
 }
 
-func (c *computer) checkIfInstructionFaulty(i Instruction) {
+func (c *computer) isInstructionFaulty(i Instruction) {
 	var indexes = [3]int{i.input1Pos, i.input2Pos, i.outputPos}
 	for _, index := range indexes {
-		c.checkIfIndexOutOfBounds(index)
+		c.isIndexOutOfBounds(index)
 	}
 }
 
-func (c *computer) checkIfIndexOutOfBounds(i int) {
+func (c *computer) isIndexOutOfBounds(i int) {
 	if i >= len(c.memory) {
 		fmt.Printf("Current memory: %v\n", c.memory)
 		log.Fatalf("Cannot access memory at index %v", i)

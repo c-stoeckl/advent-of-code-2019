@@ -7,12 +7,12 @@ import (
 )
 
 func day2() {
-	part1 := p1()
-	part2 := p2()
+	part1 := d2p1()
+	part2 := d2p2()
 	printSolution(part1, part2)
 }
 
-func p1() int {
+func d2p1() int {
 	var newProgram = stringArrayToInt(strings.Split(parseInput(2)[0], ","))
 
 	newProgram[1] = 12
@@ -24,7 +24,7 @@ func p1() int {
 	return result[0]
 }
 
-func p2() int {
+func d2p2() int {
 	for noun := 0; noun <= 99; noun++ {
 		for verb := 0; verb <= 99; verb++ {
 			var newProgram = stringArrayToInt(strings.Split(parseInput(2)[0], ","))

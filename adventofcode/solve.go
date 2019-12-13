@@ -11,6 +11,8 @@ func Solve(day int) {
 		day1()
 	case 2:
 		day2()
+	case 3:
+		day3()
 	default:
 		fmt.Println("No solution for the provided day, yet.")
 	}

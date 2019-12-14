@@ -7,13 +7,16 @@ import (
 	"strings"
 )
 
+// A Path is a slice of coordinates
 type Path []Coordinate
 
+// A Coordinate consists is a pair of X and Y positions
 type Coordinate struct {
 	X int
 	Y int
 }
 
+// A Vector has a direction and a distance
 type Vector struct {
 	Direction string
 	Distance  int

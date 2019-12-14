@@ -16,12 +16,6 @@ type Coordinate struct {
 	Y int
 }
 
-// A Vector has a direction and a distance
-type Vector struct {
-	Direction string
-	Distance  int
-}
-
 var wires = parseInput(3)
 
 func day3() {
@@ -30,8 +24,18 @@ func day3() {
 }
 
 func d3p1() int {
-	var wirePaths []Path
+	wirePaths := calcWirePaths()
+	crossings := findCrossings(wirePaths[0], wirePaths[1])
 
+	var distances []int
+	for _, c := range crossings {
+		distances = append(distances, calcManDist(Coordinate{0, 0}, c))
+	}
+
+	return findSmallestNumber(distances)
+}
+
+func calcWirePaths() (wirePaths []Path) {
 	for _, wire := range wires {
 		wirePath := Path{}
 		vectors := strings.Split(wire, ",")
@@ -44,41 +48,33 @@ func d3p1() int {
 			if err != nil {
 				log.Fatalf("Error converting ASCII to Int: %v", err)
 			}
-			vector := Vector{Direction: direction, Distance: distance}
 
-			switch vector.Direction {
+			switch direction {
 			case "R":
-				for newX := lastX; newX <= vector.Distance+lastX; newX++ {
+				for newX := lastX; newX <= distance+lastX; newX++ {
 					wirePath = append(wirePath, Coordinate{newX, lastY})
 				}
-				lastX = vector.Distance + lastX
+				lastX = distance + lastX
 			case "L":
-				for newX := lastX; newX >= lastX-vector.Distance; newX-- {
+				for newX := lastX; newX >= lastX-distance; newX-- {
 					wirePath = append(wirePath, Coordinate{newX, lastY})
 				}
-				lastX = lastX - vector.Distance
+				lastX = lastX - distance
 			case "U":
-				for newY := lastY; newY <= vector.Distance+lastY; newY++ {
+				for newY := lastY; newY <= distance+lastY; newY++ {
 					wirePath = append(wirePath, Coordinate{lastX, newY})
 				}
-				lastY = vector.Distance + lastY
+				lastY = distance + lastY
 			case "D":
-				for newY := lastY; newY >= lastY-vector.Distance; newY-- {
+				for newY := lastY; newY >= lastY-distance; newY-- {
 					wirePath = append(wirePath, Coordinate{lastX, newY})
 				}
-				lastY = lastY - vector.Distance
+				lastY = lastY - distance
 			}
 		}
 		wirePaths = append(wirePaths, wirePath)
 	}
-	crossings := findCrossings(wirePaths[0], wirePaths[1])
-
-	var distances []int
-	for _, c := range crossings {
-		distances = append(distances, calcManDist(Coordinate{0, 0}, c))
-	}
-
-	return findSmallestNumber(distances)
+	return wirePaths
 }
 
 func findSmallestNumber(numbers []int) int {

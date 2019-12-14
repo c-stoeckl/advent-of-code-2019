@@ -93,7 +93,7 @@ func findSmallestNumber(numbers []int) int {
 }
 
 func calcManDist(a, b Coordinate) int {
-	return int(math.Abs(float64(a.X)-float64(b.X))) + int(math.Abs(float64(a.Y)-float64(b.Y)))
+	return int(math.Abs(float64(a.X)-float64(b.X)) + math.Abs(float64(a.Y)-float64(b.Y)))
 }
 
 func findCrossings(path1, path2 Path) (crossings []Coordinate) {
